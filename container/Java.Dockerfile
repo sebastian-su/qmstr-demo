@@ -8,8 +8,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ARG QMSTR_BRANCH=development
-ARG QMSTR_FORK=QMSTR
+ARG QMSTR_FORK=sebastian-su
 RUN git clone -b ${QMSTR_BRANCH} --single-branch https://github.com/${QMSTR_FORK}/qmstr.git /tmp/qmstr
+
+ADD qmstr /tmp/qmstr
 
 WORKDIR /tmp/qmstr
 RUN cd lib/java-qmstr && ./gradlew install
